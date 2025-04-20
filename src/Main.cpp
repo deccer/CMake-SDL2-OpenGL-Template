@@ -1,3 +1,4 @@
+#include <debugbreak.h>
 #include <SDL2/SDL.h>
 #include <imgui_impl_sdl2.h>
 #include <imgui_impl_opengl3.h>
@@ -34,11 +35,27 @@ TSettings g_applicationSettings = {
 SDL_Window* g_window = nullptr;
 SDL_GLContext g_windowContext = nullptr;
 ImGuiContext* g_imguiContext = nullptr;
-std::chrono::time_point<std::chrono::high_resolution_clock> g_clockStart = {};
+
+auto OnOpenGLDebugMessage(
+    [[maybe_unused]] uint32_t source,
+    uint32_t type,
+    [[maybe_unused]] uint32_t id,
+    [[maybe_unused]] uint32_t severity,
+    [[maybe_unused]] int32_t length,
+    const char* message,
+    [[maybe_unused]] const void* userParam) -> void {
+
+    if (type == GL_DEBUG_TYPE_ERROR) {
+        std::printf("%s\n", message);
+        debug_break();
+    }
+}
 
 auto main(
     [[maybe_unused]] int32_t argc,
     [[maybe_unused]] char* argv[]) -> int32_t {
+
+    using clock = std::chrono::high_resolution_clock;
 
     if (SDL_Init(SDL_INIT_VIDEO)) {
         std::printf("SDL_Init failed: %s\n", SDL_GetError());
@@ -114,6 +131,14 @@ auto main(
         std::printf("VSync: %s\n", isVSync ? "On" : "Off");
     }
 
+    if (g_applicationSettings.IsDebug) {
+        glDebugMessageCallback(OnOpenGLDebugMessage, nullptr);
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+    }
+
+    TracyGpuContext
+
     g_imguiContext = ImGui::CreateContext();
     auto& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_IsSRGB; // this little shit doesn't do anything
@@ -133,14 +158,15 @@ auto main(
     glDisable(GL_DITHER);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_FRAMEBUFFER_SRGB);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
     glClearColor(0.01f, 0.02f, 0.03f, 1.0f);
 
     int32_t framebufferWidth = 0;
     int32_t framebufferHeight = 0;
     SDL_GL_GetDrawableSize(g_window, &framebufferWidth, &framebufferHeight);
     glViewport(0, 0, framebufferWidth, framebufferHeight);
-
-    using clock = std::chrono::high_resolution_clock;
 
     auto isFramebufferSrgbDisabled = false;
     auto isRunning = true;

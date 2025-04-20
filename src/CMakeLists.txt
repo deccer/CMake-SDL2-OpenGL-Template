@@ -54,7 +54,7 @@ target_link_libraries(Project
     PRIVATE SDL2::SDL2-static
     PRIVATE glad
     PRIVATE glm
-    #PRIVATE imgui
+    PRIVATE imgui
     #PRIVATE imguizmo
     #PRIVATE stb
     #PRIVATE poolSTL::poolSTL

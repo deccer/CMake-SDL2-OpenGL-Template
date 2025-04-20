@@ -1,6 +1,7 @@
 # CMake-SDL2-OpenGL-Template
 
-Just an empty project template for cmake, using sdl2 and glad
+Just an empty project template for cmake, using sdl2, glad and a bunch of other useful things.
+Make sure to read to the end.
 
 ## Getting Started
 
@@ -37,7 +38,11 @@ start right away.
 When you uncomment other dependencies, make sure you adjust the includes
 in `./src/CMakeLists.txt`'s `target_link_libraries` section.
 
-## Oh no
+## What now
+
+Goto `./src/Main.cpp:173` and start adding your stuff.
+
+## Oh, no
 
 When you load this template for the first time and CMake is configuring it for the first time, you might
 see this error. That's because glad needs to generate its files first. That happens when you build.

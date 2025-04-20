@@ -40,7 +40,18 @@ in `./src/CMakeLists.txt`'s `target_link_libraries` section.
 
 ## What now
 
-Goto `./src/Main.cpp:173` and start adding your stuff.
+Goto `./src/Main.cpp:173` and start adding your stuff. If you have assets like shaders, textures or models, 
+you can stuff them into `/data` those will automatically be copied to your project output, 
+so that you can use relative paths to your assets from within your code.
+
+For Example
+```bash
+data/shaders/simple.vs.glsl
+data/shaders/simple.fs.glsl
+```
+can be accessed via `YourFavoriteFunctionToReadTextFiles("data/shaders/vs.glsl")`.
+
+This is made possible via the `CopyData` target which can be found in `./src/CMakeLists.txt`
 
 ## Oh, no
 

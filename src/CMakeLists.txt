@@ -49,6 +49,7 @@ target_precompile_headers(Project
 )
 
 target_link_libraries(Project
+    PRIVATE TracyClient
     PRIVATE debugbreak
     PRIVATE SDL2::SDL2-static
     PRIVATE glad
@@ -65,5 +66,4 @@ target_link_libraries(Project
     #PRIVATE Jolt
     #PRIVATE mikktspace
     #PRIVATE soloud
-    #PRIVATE TracyClient
 )

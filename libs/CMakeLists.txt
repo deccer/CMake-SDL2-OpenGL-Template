@@ -1,12 +1,12 @@
 include(FetchContent)
 
 include(debugbreak.cmake)
+include(tracy.cmake)
 include(sdl2.cmake)
 include(glad.cmake)
 include(glm.cmake)
 #include(stb.cmake)
 #include(mikktspace.cmake)
-#include(tracy.cmake)
 #include(imgui.cmake)
 #include(imguizmo.cmake)
 #include(fastgltf.cmake)

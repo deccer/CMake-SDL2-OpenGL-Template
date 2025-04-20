@@ -1,0 +1,101 @@
+﻿{
+   "version": 2,
+   "configurePresets": [
+      {
+         "name": "Debug-MSVC",
+         "displayName": "Debug - MSVC",
+         "description": "Target Windows with the Visual Studio development environment.",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "architecture": {
+            "value": "x64",
+            "strategy": "external"
+         },
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
+         },
+         "vendor": {
+            "microsoft.com/VisualStudioSettings/CMake/1.0": {
+               "hostOS": [
+                  "Windows"
+               ]
+            }
+         }
+      },
+      {
+         "name": "Release-MSVC",
+         "displayName": "Release - MSVC",
+         "description": "Target Windows with the Visual Studio development environment.",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "architecture": {
+            "value": "x64",
+            "strategy": "external"
+         },
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Release",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}"
+         },
+         "vendor": {
+            "microsoft.com/VisualStudioSettings/CMake/1.0": {
+               "hostOS": [
+                  "Windows"
+               ]
+            }
+         }
+      },
+      {
+         "name": "Debug-Clang",
+         "displayName": "Debug - Clang",
+         "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+            "CMAKE_C_COMPILER": "clang",
+            "CMAKE_CXX_COMPILER": "clang++"
+         }
+      },
+      {
+         "name": "Release-Clang",
+         "displayName": "Release - Clang",
+         "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Release",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+            "CMAKE_C_COMPILER": "clang",
+            "CMAKE_CXX_COMPILER": "clang++"
+         }
+      },
+      {
+         "name": "Debug-Gcc",
+         "displayName": "Debug - Gcc",
+         "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Debug",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+            "CMAKE_C_COMPILER": "gcc",
+            "CMAKE_CXX_COMPILER": "g++"
+         }
+      },
+      {
+         "name": "Release-Gcc",
+         "displayName": "Release - Gcc",
+         "description": "Using compilers: C = /usr/bin/gcc, CXX = /usr/bin/g++",
+         "generator": "Ninja",
+         "binaryDir": "${sourceDir}/build/${presetName}",
+         "cacheVariables": {
+            "CMAKE_BUILD_TYPE": "Release",
+            "CMAKE_INSTALL_PREFIX": "${sourceDir}/build/install/${presetName}",
+            "CMAKE_C_COMPILER": "gcc",
+            "CMAKE_CXX_COMPILER": "g++"
+         }
+      }
+   ]
+}

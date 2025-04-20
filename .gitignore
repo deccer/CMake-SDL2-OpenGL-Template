@@ -396,5 +396,11 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains Rider
+# JetBrains Rider & Clion
 *.sln.iml
+.idea/
+
+# Default CMake project output
+build/
+cmake-build-debug/
+cmake-build-release/
